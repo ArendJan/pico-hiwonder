@@ -9,3 +9,7 @@ Library copied from [madhephaestus/lx16a-servo](https://github.com/madhephaestus
 No need for a 74HC126 buffer chip, as that did not seem to work.
 
 Tested with LX225 & HTD-45H servos.
+
+
+## Pinout:
+![pinout servo connector](https://github.com/Hephaestus-Arm/HephaestusArm2/raw/0.1.1/photos/motor_cable.jpg)
