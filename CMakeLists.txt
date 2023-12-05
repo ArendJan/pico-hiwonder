@@ -1,0 +1,23 @@
+set(PROJECT lx_servo)
+cmake_minimum_required(VERSION 3.12)
+set(CMAKE_CXX_STANDARD 17)
+if (NOT CMAKE_BUILD_TYPE)
+set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
+endif()
+set(PICO_SDK_FETCH_FROM_GIT on)
+include(pico_sdk_import.cmake)
+if(CMAKE_EXPORT_COMPILE_COMMANDS)
+    set(CMAKE_CXX_STANDARD_INCLUDE_DIRECTORIES ${CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES})
+endif()
+
+# include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+project(${PROJECT} C CXX ASM)
+pico_sdk_init()
+add_executable(${PROJECT} src/main.cpp src/lx16a-servo.cpp)
+target_link_libraries(${PROJECT} pico_stdlib hardware_pwm
+pico_unique_id hardware_watchdog hardware_adc hardware_i2c hardware_uart
+hardware_pio hardware_clocks hardware_spi)
+pico_add_extra_outputs(${PROJECT})
+pico_enable_stdio_usb(${PROJECT} 1)
+pico_enable_stdio_uart(${PROJECT} 0)
+# target_compile_options(${PROJECT} PRIVATE -Wall -Wextra -Wpedantic -Werror)
